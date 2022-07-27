@@ -1,0 +1,21 @@
+.headerName{
+    width: auto;
+    text-align: center;
+    margin: auto;
+    border-bottom: 1px solid red;
+}
+.promoAndCombos{
+    margin-top:2%;
+    margin-left: 25%
+}
+.menuData{
+    margin-top:10px;
+    border: 1px solid red;
+    display: flex;
+    margin:10px;
+    padding:10px;
+
+}
+.card{
+    margin-right: 10px;
+}
