@@ -1,0 +1,23 @@
+
+.OrderHeader{
+    text-align: center;
+    font-size:2rem;
+    border-bottom: 1px solid red;
+    margin-bottom: 10px;
+}
+.orderSummaryHeader{
+    font-size:2rem;
+}
+.price{
+    margin-left: 35px;
+}
+.paymentHeader{
+    font-size:2rem;
+}
+.paymentComps{
+    font-size:20px;
+    margin-top: 5px;
+}
+.SubmitOrder{
+    margin-top: 10px;
+}

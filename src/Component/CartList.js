@@ -4,6 +4,8 @@ import CartItem from './CartItem'
 import Modal from '@mui/material/Modal';
 import { connect } from 'react-redux';
 import './CSS/Cart.css';
+import { Button } from '@mui/material';
+import OC from './OrderConfirmation';
 
 const style = {
   position: 'absolute',
@@ -19,6 +21,7 @@ const style = {
 
 function BasicModal({Cart,openModal,closeModal,setCar}) {
     const [total,setTotal] =  useState(0);
+    const [openOrder,setOpenOrder] = useState(false);
     useEffect(() =>{
         let sum=0;
         for(let i=0;i<Cart.length;i++){
@@ -30,6 +33,10 @@ function BasicModal({Cart,openModal,closeModal,setCar}) {
         setCar(false);
         closeModal();
     }
+    const handleCheckout = () =>{
+      setOpenOrder(true);
+      openModal();
+    }
   return (
     <div>
       <Modal
@@ -39,7 +46,7 @@ function BasicModal({Cart,openModal,closeModal,setCar}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-            <div className="grid-contained">
+            <div className="grid-contained cartContainer">
                 <div className="row cartHeader">
                     <h3>CART</h3>
                 </div>
@@ -51,8 +58,10 @@ function BasicModal({Cart,openModal,closeModal,setCar}) {
                     <div className="col price">${total}</div>
                 </div>
             </div>
+            <Button variant="contained" onClick={handleCheckout}>Checkout</Button> 
         </Box>
       </Modal>
+      {openOrder && <OC setOpenOrder={setOpenOrder} setCar={setCar}/>}
     </div>
   );
 }

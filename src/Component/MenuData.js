@@ -26,7 +26,7 @@ function ImgMediaCard({data,index,Cart,addItem}) {
           {data.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {`Item Cost: ${data.Price}`}
+          {`Item Cost: ${data.Price}  Rewards Point:${data.Price/10}`}
         </Typography>
       </CardContent>
       <CardActions>

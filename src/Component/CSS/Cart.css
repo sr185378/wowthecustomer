@@ -20,3 +20,6 @@
 .price{
     float: right;
 }
+.cartContainer{
+    margin-bottom: 50px;
+}
