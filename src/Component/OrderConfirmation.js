@@ -12,6 +12,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import ViewOffer from './ViewOffer';
+import ExtraOffer from './ExtraOffer';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -24,7 +25,8 @@ const style = {
   p: 4,
 };
 
-function TransitionsModal({closeModal,openModal,setOpenOrder,setCar,Cart}) {
+function TransitionsModal({closeModal,openModal,openModalF,setOpenOrder,setCar,Cart,clearCart}) {
+    const [viewOffer,setViewOffer] = useState(false);
   const handleClose = () => {
     setOpenOrder(false);
     setCar(false);
@@ -32,19 +34,23 @@ function TransitionsModal({closeModal,openModal,setOpenOrder,setCar,Cart}) {
   };
   const [total,setTotal] = useState(0);
   useEffect(() =>{
+    setViewOffer(true);
+    openModalF();
     let sum=0;
     for(let i=0;i<Cart.length;i++){
         sum=sum+Cart[i].Price;
     }
     setTotal(sum);
-    },[Cart, Cart.length])
+    },[Cart, Cart.length, openModalF])
     const handleSubmit =()=>{
         alert("Thank you for order!!!");
+        clearCart();
         handleClose();
     }
 
   return (
     <div>
+        {viewOffer && <ExtraOffer setViewOffer={setViewOffer}/>}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -94,6 +100,7 @@ function TransitionsModal({closeModal,openModal,setOpenOrder,setCar,Cart}) {
                             <Button variant="contained" className="SubmitOrder" onClick={handleSubmit}>Submit Order</Button>
                        </div>
                     </div>
+                    
                 </div>
           </Box>
         </Fade>
@@ -113,6 +120,12 @@ const mapStateToProps = (state) => {
     return {
       closeModal: ()=> {
         dispatch({type:"CLOSE_MODAL"});
+      },
+      openModalF: ()=> {
+        dispatch({type:"OPEN_MODAL"});
+      },
+      clearCart: ()=>{
+        dispatch({type:"CLEAR_CART"});
       }
     }
   }

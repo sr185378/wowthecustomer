@@ -1,4 +1,4 @@
-import {ADD_ITEM,OPEN_MODAL,CLOSE_MODAL} from '../Actions/action';
+import {ADD_ITEM,OPEN_MODAL,CLOSE_MODAL,CLEAR_CART} from '../Actions/action';
 const initialState = {
     Cart:[],
     openModal:false,
@@ -20,6 +20,8 @@ const initialState = {
           ...state,
            openModal: false
         };
+      case CLEAR_CART:
+        return initialState;
       default: return state;
     }
 

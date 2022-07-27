@@ -38,7 +38,6 @@ function ImgMediaCard({data,index,Cart,addItem}) {
 
 const mapStateToProps = (state) => {
   return {
-    MyName: state.Name,
     Cart:state.Cart
   };
 }

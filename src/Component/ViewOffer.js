@@ -6,7 +6,7 @@ import Select from '@mui/material/Select';
 import './CSS/OrderConfirmation.css';
 import Promos from './Data/Comps';
 export default function BasicSelect() {
-  const [offer, setOffer] = React.useState('');
+  const [offer, setOffer] = React.useState(Promos[0].Code);
 
   const handleChange = (event) => {
     setOffer(event.target.value);
@@ -23,7 +23,7 @@ export default function BasicSelect() {
         >
           
           {Promos.map((pro,index)=>{
-            return <MenuItem value={10}>{pro.Code}</MenuItem>
+            return <MenuItem value={pro.Code}>{pro.Code}</MenuItem>
           })}
         </Select>
       </FormControl>
