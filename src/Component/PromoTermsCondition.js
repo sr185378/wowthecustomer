@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { connect } from 'react-redux';
+import './CSS/TermsCondition.css';
+import TCDetails from './TCDetails'
 
 const style = {
   position: 'absolute',
@@ -16,12 +17,13 @@ const style = {
   p: 4,
 };
 
-function BasicModalForTC({openModal,closeModal,setTC}) {
+function BasicModalForTC({openModal,closeModal,setTC,data}) {
 
     const handleClose=()=>{
         setTC(false);
         closeModal();
     }
+    const neededKey = ["Name","Code","ApplicableCategory","OfferStart","OfferEnd"]
   return (
     <div>
       <Modal
@@ -32,7 +34,14 @@ function BasicModalForTC({openModal,closeModal,setTC}) {
       >
         <Box sx={style}>
             <div className="tcList">
-                <div className=""></div>
+                <div className="tcHeader">
+                    <p className="tcHeaderText">Terms And Condition</p>
+                </div>
+                <div className="tcBody">
+                    {neededKey.map((data1,index)=>{
+                        return <TCDetails cat={data1} catData={data[data1]}/>
+                    })}
+                </div>
             </div>
         </Box>
       </Modal>

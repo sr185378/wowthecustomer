@@ -7,12 +7,15 @@ import PromoTermsCondition from "./PromoTermsCondition";
 import Button from '@mui/material/Button';
 import { connect } from 'react-redux';
 
-function Carousel({openModal}) {
+function Carousel({openModal,handleMenu}) {
   const [currImg, setCurrImg] = useState(0);
   const [tc,setTC] = useState(false);
   const handleTC = () => {
     setTC(true);
     openModal();
+  }
+  const handlePromos = () => {
+    handleMenu(Promos[currImg].ApplicableCategory);
   }
   return (
     <div className="carousel">
@@ -30,7 +33,7 @@ function Carousel({openModal}) {
         </div>
         <div className="center">
           <h1>{Promos[currImg].Name}</h1>
-          <p>{Promos[currImg].ApplicableCategory}</p>
+          <Button onClick={() => handlePromos()}>{Promos[currImg].Code}</Button>
           <Button onClick={()=> handleTC()}>T&C</Button>
         </div>
         <div
@@ -41,8 +44,9 @@ function Carousel({openModal}) {
         >
           <ArrowForwardIosIcon style={{ fontSize: 30 }} />
         </div>
+        {tc && <PromoTermsCondition setTC={setTC} data={Promos[currImg]}/>}
       </div>
-          {tc && <PromoTermsCondition setTC={setTC} />}
+          
     </div>
   );
 }

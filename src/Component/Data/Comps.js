@@ -2,27 +2,55 @@ const comps = [
     {
         "ID": 22901,
         "IncentiveCategory": "Comp",
-        "IncentiveType": "PercentageDiscounts",
-        "Name": "5% Off on Orders above $50",
-        "ApplicableCategory": "Desserts",
-        "imageURL": "https://www.lemonblossoms.com/wp-content/uploads/2020/12/Baklaka-Recipe-7.jpg",
-        "OfferStart": "2022-07-27T08:12:03.780Z",
-        "OfferEnd": "2022-08-25T08:12:03.780Z",
+        "IncentiveType": "Percentage",
+        "Name": "July Offers - 5% Off on Orders above $50",
+        "Code": "JULY5PC50",
+        "ApplicableCategory": "*",
+        "OfferStart": "2022-07-01T00:00:00Z",
+        "OfferEnd": "2022-07-31T00:00:00Z",
         "IncentiveDetails": {
-            "DiscPercent": "5"
+            "DiscPercent": 5,
+            "DiscThresholdAmount": 50
         }
     },
     {
         "ID": 22902,
         "IncentiveCategory": "Comp",
-        "IncentiveType": "FixedDiscounts",
-        "Name": "$5 Off on Today's Orders above $50",
-        "ApplicableCategory": "Burger",
-        "imageURL": "https://cdn4.vectorstock.com/i/1000x1000/05/73/modern-red-banner-ribbon-new-offer-vector-26250573.jpg",
+        "IncentiveType": "FixedDiscount",
+        "Name": "Today's offer - $1.5 Off on all Desserts",
+        "Code": "DESSERT1D5",
+        "ApplicableCategory": "Desserts",
         "OfferStart": "2022-07-27T00:00:00Z",
         "OfferEnd": "2022-08-27T23:59.99Z",
         "IncentiveDetails": {
-            "DiscAmount": "5"
+            "DiscAmount": "1.5"
+        }
+    },
+    {
+        "ID": 52901,
+        "IncentiveCategory": "Promo",
+        "IncentiveType": "BOGO",
+        "Name": "500 ml Coke free with every Italian Pizza",
+        "Code": "PIZZACOKE",
+        "ApplicableCategory": "ItalianPizza",
+        "OfferStart": "*",
+        "OfferEnd": "*",
+        "IncentiveDetails": {
+            "DiscItemQty": 1
+        }
+    },
+    {
+        "ID": 52902,
+        "IncentiveCategory": "Promo",
+        "IncentiveType": "Coupon",
+        "Name": "25% Off for Every Fifth Order (Max $50 Discount)",
+        "Code": "FifthOrder25",
+        "ApplicableCategory": "*",
+        "OfferStart": "*",
+        "OfferEnd": "*",
+        "IncentiveDetails": {
+            "DiscPercent": 25,
+            "RepeatingOrderThreshold": 5
         }
     }
 ]
