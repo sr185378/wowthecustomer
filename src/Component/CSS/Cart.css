@@ -1,0 +1,22 @@
+.cartHeader{
+    text-align: center;
+    border-bottom: 1px solid red;
+}
+.itemName {
+    width: 100%;
+    float: left;
+}
+.cItem{
+    display: flex;
+    margin: 10px;
+}
+.total{
+    width: 90%;
+}
+.totalBlock{
+    display: flex;
+    border-top: 1px solid red;
+}
+.price{
+    float: right;
+}

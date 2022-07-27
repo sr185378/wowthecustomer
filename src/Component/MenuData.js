@@ -2,32 +2,53 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import { connect } from 'react-redux';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './CSS/Menu.css';
 
-export default function ImgMediaCard() {
+function ImgMediaCard({data,index,Cart,addItem}) {
+
+  const handleClick = () =>{
+    addItem(data);
+  }
   return (
     <Card sx={{ maxWidth: 345 }} className="card">
       <CardMedia
         component="img"
         alt="green iguana"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={data.imageURL}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {data.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {`Item Cost: ${data.Price}`}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add To Cart</Button>
+        <Button size="small" onClick={()=>handleClick()}>Add To Cart</Button>
       </CardActions>
     </Card>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    MyName: state.Name,
+    Cart:state.Cart
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItem: (data)=> {
+      dispatch({type:"ADD_ITEM",payload:data});
+    }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ImgMediaCard)

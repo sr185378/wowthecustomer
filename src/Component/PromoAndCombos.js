@@ -2,29 +2,23 @@ import React, { useState } from "react";
 import "./CSS/Carousel.css";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Promos from './Data/Comps'
+import PromoTermsCondition from "./PromoTermsCondition";
+import Button from '@mui/material/Button';
+import { connect } from 'react-redux';
 
-function Carousel() {
+function Carousel({openModal}) {
   const [currImg, setCurrImg] = useState(0);
-
-  const images = [
-    { title: "San Diego", subtitle: "This is San Diego", img: "hgdshgfs" },
-    {
-      title: "Salvador, Brazil",
-      subtitle: "The Best City in the World",
-      img: "dsfsdfs",
-    },
-    {
-      title: "UBC (Vancouver)",
-      subtitle: "The University of British Columbia",
-      img: "sdfsdfsd",
-    },
-  ];
-
+  const [tc,setTC] = useState(false);
+  const handleTC = () => {
+    setTC(true);
+    openModal();
+  }
   return (
     <div className="carousel">
       <div
         className="carouselInner"
-        style={{ backgroundImage: `url(${images[currImg].img})` }}
+        style={{ backgroundImage: `url(${Promos[currImg].imageURL})` }}
       >
         <div
           className="left"
@@ -35,20 +29,30 @@ function Carousel() {
           <ArrowBackIosIcon style={{ fontSize: 30 }} />
         </div>
         <div className="center">
-          <h1>{images[currImg].title}</h1>
-          <p>{images[currImg].subtitle}</p>
+          <h1>{Promos[currImg].Name}</h1>
+          <p>{Promos[currImg].ApplicableCategory}</p>
+          <Button onClick={()=> handleTC()}>T&C</Button>
         </div>
         <div
           className="right"
           onClick={() => {
-            currImg < images.length - 1 && setCurrImg(currImg + 1);
+            currImg < Promos.length - 1 && setCurrImg(currImg + 1);
           }}
         >
           <ArrowForwardIosIcon style={{ fontSize: 30 }} />
         </div>
       </div>
+          {tc && <PromoTermsCondition setTC={setTC} />}
     </div>
   );
 }
 
-export default Carousel;
+const mapDispatchToProps = (dispatch) => {
+    return {
+      openModal: ()=> {
+        dispatch({type:"OPEN_MODAL"});
+      }
+    }
+  }
+
+export default connect(null,mapDispatchToProps)(Carousel)

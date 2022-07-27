@@ -1,6 +1,6 @@
 const Menulist=[
     {
-        "itemname":"coke",
+        "name":"coke",
         "category":"drinks",
         "Price" : 10,
         "itemID" : 1,

@@ -1,14 +1,25 @@
-import {ADD_NAME} from '../Actions/action';
+import {ADD_ITEM,OPEN_MODAL,CLOSE_MODAL} from '../Actions/action';
 const initialState = {
-    Name: 'Sachin The Great'
+    Cart:[],
+    openModal:false,
   };
   function reducer(state=initialState,action) {
     switch (action.type) {
-      case ADD_NAME:
+      case ADD_ITEM:
         return {
-          Name:'Sri Nivas'
+          ...state,
+          Cart:[...state.Cart, action.payload],
         };
-
+      case OPEN_MODAL:
+        return {
+          ...state,
+          openModal: true
+        };
+      case CLOSE_MODAL:
+        return {
+          ...state,
+           openModal: false
+        };
       default: return state;
     }
 
